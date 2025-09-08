@@ -11,4 +11,94 @@
           margin: 0;
           padding: 0;
           background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1f 100%);
-          col
+          color: #f5f5f5;
+          text-align: center;
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          background-size: cover;
+          background-position: center;
+          overflow: hidden;
+      }
+
+      /* Glow Effect Title */
+      h1 {
+          color: gold;
+          font-size: 3rem;
+          margin-bottom: 20px;
+          text-shadow: 0 0 15px #d4af37, 0 0 30px #ffd700;
+      }
+
+      p {
+          font-size: 1.2rem;
+          color: #e0c1b8; /* burgundy desire */
+          max-width: 700px;
+          margin: 0 auto 20px;
+          line-height: 1.6;
+      }
+
+      .highlight {
+          color: #d4af37; /* royal gold */
+          font-weight: bold;
+      }
+
+      /* Animated Button */
+      .explore-btn {
+          display: inline-block;
+          margin-top: 30px;
+          padding: 18px 40px;
+          background: gold;
+          color: black;
+          font-weight: bold;
+          font-size: 1.2rem;
+          text-decoration: none;
+          border-radius: 12px;
+          box-shadow: 0 0 20px gold;
+          transition: all 0.3s ease;
+      }
+
+      .explore-btn:hover {
+          transform: scale(1.1) rotate(-2deg);
+          box-shadow: 0 0 35px #ffd700;
+      }
+
+      /* Floating Glow Particles */
+      .particle {
+          position: absolute;
+          border-radius: 50%;
+          background: rgba(212, 175, 55, 0.5);
+          animation: float 10s infinite;
+      }
+
+      @keyframes float {
+          0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.7;}
+          50% { transform: translateY(-200px) translateX(50px) scale(1.5); opacity: 0.3;}
+          100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.7;}
+      }
+  </style>
+</head>
+<body>
+
+    <!-- Floating Particles -->
+    <div class="particle" style="width:15px; height:15px; top:20%; left:10%; animation-delay: 0s;"></div>
+    <div class="particle" style="width:20px; height:20px; top:70%; left:80%; animation-delay: 2s;"></div>
+    <div class="particle" style="width:10px; height:10px; top:40%; left:50%; animation-delay: 4s;"></div>
+    <div class="particle" style="width:25px; height:25px; top:60%; left:30%; animation-delay: 6s;"></div>
+
+    <!-- Main Content -->
+    <h1>Welcome to <span class="highlight">The HimiSphere</span></h1>
+    <p>
+        You’ve entered <span class="highlight">The HimiSphere</span> — the ultimate gay-only content universe.  
+        A private, luxurious space where creators share bold, intimate, and unapologetic sensual content.
+    </p>
+    <p>
+        Powered by <span class="highlight">SK Vizualz Worldwide</span> and curated by yours truly, <span class="highlight">Himothy Khalifa</span>,  
+        this is your VIP pass to erotic expression and connection like no other.
+    </p>
+
+    <a href="#" class="explore-btn">Explore The HimiSphere</a>
+
+</body>
+</html>
