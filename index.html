@@ -5,69 +5,84 @@
   <title>The HimiSphere</title>
   <style>
       body {
-          font-family: Arial, sans-serif;
+          font-family: 'Playfair Display', serif;
           margin: 0;
-          background: #111;
+          background: #0a0a0a; /* deep black */
           color: #f5f5f5;
           text-align: center;
       }
       h1 {
           color: gold;
+          margin-top: 50px;
       }
 
-      /* Age Gate Overlay */
+      /* Luxury Age Gate Overlay */
       #age-gate {
           position: fixed;
           top: 0; left: 0;
           width: 100%; height: 100%;
-          background: rgba(0,0,0,0.95);
-          color: white;
+          background: rgba(10,10,10,0.98);
+          color: ivory; /* ivory mist */
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
           z-index: 9999;
+          padding: 20px;
       }
       #age-gate h2 {
           margin-bottom: 20px;
+          color: #d4af37; /* royal gold */
+          font-size: 2rem;
+      }
+      #age-gate p {
+          margin-bottom: 10px;
+          font-size: 1.1rem;
+          color: #e0c1b8; /* burgundy desire */
       }
       #age-gate input {
-          padding: 10px;
-          margin: 5px;
+          padding: 12px;
+          margin: 8px;
           font-size: 16px;
-          border-radius: 5px;
+          border-radius: 8px;
           border: none;
-          width: 120px;
+          width: 130px;
           text-align: center;
+          background: #2a1a2f; /* midnight plum */
+          color: ivory;
       }
       #age-gate button {
-          padding: 12px 25px;
-          margin: 15px;
-          font-size: 16px;
+          padding: 14px 30px;
+          margin: 20px;
+          font-size: 18px;
           border: none;
           cursor: pointer;
-          border-radius: 5px;
+          border-radius: 8px;
           background: gold;
           color: black;
+          font-weight: bold;
       }
       #error {
           color: crimson;
           margin-top: 10px;
           display: none;
+          font-size: 1rem;
       }
   </style>
 </head>
 <body>
-    <!-- Age Verification -->
+    <!-- Age + ID Verification -->
     <div id="age-gate">
-        <h2>Verify Your Age</h2>
-        <p>Please enter your date of birth:</p>
+        <h2>Verify Your Age & ID</h2>
+        <p>Enter your Date of Birth:</p>
         <input type="number" id="day" placeholder="DD" min="1" max="31">
         <input type="number" id="month" placeholder="MM" min="1" max="12">
         <input type="number" id="year" placeholder="YYYY">
+        <p>Enter ID Number:</p>
+        <input type="text" id="idNumber" placeholder="ID Number">
         <br>
         <button id="verify">Verify</button>
-        <p id="error">Sorry, you must be 18+ to enter.</p>
+        <p id="error">Sorry, verification failed. You must be 18+ and have a valid ID.</p>
     </div>
 
     <!-- Main Content -->
@@ -83,29 +98,30 @@
             const d = parseInt(document.getElementById("day").value);
             const m = parseInt(document.getElementById("month").value);
             const y = parseInt(document.getElementById("year").value);
+            const id = document.getElementById("idNumber").value.trim();
 
-            if (!d || !m || !y) {
-                errorMsg.textContent = "Please enter a valid date.";
+            if (!d || !m || !y || id.length < 4) {
+                errorMsg.textContent = "Please enter a valid DOB and ID (at least 4 characters).";
                 errorMsg.style.display = "block";
                 return;
             }
 
+            // Age calculation
             const today = new Date();
             const birthDate = new Date(y, m - 1, d);
             let age = today.getFullYear() - birthDate.getFullYear();
             const mDiff = today.getMonth() - birthDate.getMonth();
-
             if (mDiff < 0 || (mDiff === 0 && today.getDate() < birthDate.getDate())) {
                 age--;
             }
 
             if (age >= 18) {
-                gate.style.display = "none"; // Allow entry
+                gate.style.display = "none"; // allow entry
             } else {
-                errorMsg.textContent = "Sorry, you must be 18+ to enter.";
+                errorMsg.textContent = "You must be 18+ to enter.";
                 errorMsg.style.display = "block";
                 setTimeout(() => {
-                    window.location.href = "https://www.google.com"; // Redirect minors
+                    window.location.href = "https://www.google.com"; // redirect minors
                 }, 2000);
             }
         });
